@@ -35,6 +35,7 @@ c(
 "moments",
 "nabor",
 "pracma",
+"prettydoc",
 "psych",
 "randomForest",
 "rflann",
