@@ -9,8 +9,7 @@ c(
 "testthat",
 "viridis" )
 )
-# devtools::install_github( "stnava/ANTsRCore")
-devtools::install_github( "stnava/ANTsR")
+# devtools::install_github( "stnava/ANTsR")
 install.packages(
 c(
 "abind",
