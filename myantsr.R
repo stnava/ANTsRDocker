@@ -21,6 +21,7 @@ c(
 "extremevalues",
 "fastICA",
 "fpc",
+"ggplot2",
 "glasso",
 "glmnet",
 "grid",
