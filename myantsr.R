@@ -2,8 +2,18 @@ print("Begin")
 install.packages(
 c(
 "Rcpp","magrittr","dplyr",
+"pixmap",
+"png",
+"rmarkdown",
+"rsvd",
+"testthat",
+"viridis" )
+)
+# devtools::install_github( "stnava/ANTsRCore")
+devtools::install_github( "stnava/ANTsR")
+install.packages(
+c(
 "abind",
-"BGLR",
 "caret",
 "cluster",
 "d3Network",
@@ -25,23 +35,15 @@ c(
 "misc3d",
 "moments",
 "nabor",
-"pixmap",
-"png",
 "pracma",
 "psych",
 "randomForest",
 "rflann",
 "rgl",
-"rmarkdown",
 "robust",
 "robustbase",
-"rsvd",
 "signal",
 "sna",
-"testthat",
-"viridis",
 "visreg",
 "wmtsa")
 )
-devtools::install_github( "stnava/ANTsRCore")
-devtools::install_github( "stnava/ANTsR")
