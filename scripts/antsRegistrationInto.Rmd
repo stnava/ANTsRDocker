@@ -10,8 +10,8 @@ output:
 
 We first load the library and example images.
 
-```{r}
-knitr::opts_chunk$set(fig.width=12, fig.height=8) 
+```{r chunk1}
+knitr::opts_chunk$set(fig.width=12, fig.height=8)
 library( ANTsR )
 library( pander )
 r16 = antsImageRead( getANTsRData( "r16" ) )
@@ -21,7 +21,7 @@ r64 = antsImageRead( getANTsRData( "r64" ) )
 
 As always, it is important to look at the data.
 
-```{r}
+```{r chunk2}
 plot( r16 )
 plot( r64 )
 plot( r16, r64, color.overlay='magma', doCropping = F, window.overlay = quantile( r64, c(0.72,1) ) )
@@ -67,7 +67,7 @@ icor <-function( x, y ) {
 
 Let us translate these images to get them in the same space (up to translation).
 
-```{r}
+```{r chunk3}
 treg = antsRegistration( r16, r64, typeofTransform = 'Translation' )
 plot( r16, treg$warpedmov, color.overlay='jet', doCropping = F, alpha=0.5,
       window.overlay = quantile( r64, c(0.72,1) ) )
@@ -75,7 +75,7 @@ plot( r16, treg$warpedmov, color.overlay='jet', doCropping = F, alpha=0.5,
 
 How about a similarity transform?
 
-```{r}
+```{r chunk4}
 sreg = antsRegistration( r16, r64, typeofTransform = 'Similarity', verbose=F )
 plot( r16, sreg$warpedmov, color.overlay='jet', doCropping = F, alpha=0.5,
       window.overlay = quantile( r64, c(0.72,1) ) )
@@ -84,7 +84,7 @@ plot( r16, sreg$warpedmov, color.overlay='jet', doCropping = F, alpha=0.5,
 
 Or an affine transformation?  Note - verbosity is on here.  We can look at the output and peek under the hood a bit.
 
-```{r}
+```{r chunk5}
 areg = antsRegistration( r16, r64, typeofTransform = 'Affine', verbose=T  )
 plot( r16, areg$warpedmov, color.overlay='jet', doCropping = F, alpha=0.5,
       window.overlay = quantile( r64, c(0.72,1) ) )
@@ -93,7 +93,7 @@ plot( r16, areg$warpedmov, color.overlay='jet', doCropping = F, alpha=0.5,
 
 The image subtraction highlights differences perhaps a bit easier.
 
-```{r}
+```{r chunk6}
 asub = r16 / mean( r16 ) - areg$warpedmov / mean( areg$warpedmov )
 plot( asub )
 plot( r16, abs(asub), color.overlay='jet', doCropping = T, alpha=0.8,
@@ -102,7 +102,7 @@ plot( r16, abs(asub), color.overlay='jet', doCropping = T, alpha=0.8,
 
 Or maybe looking at a canny filter overlay.
 
-```{r}
+```{r chunk7}
 mycan = iMath( areg$warpedmov, "Canny", 1, 5, 12 )
 plot( r16, mycan, color.overlay='jet', doCropping = T, alpha=0.8,
       window.overlay = c(0.5,5 ) )
@@ -110,17 +110,17 @@ plot( r16, mycan, color.overlay='jet', doCropping = T, alpha=0.8,
 
 Of course - this is the whole purpose of similarity metrics.  We use MI here ...
 
-```{r}
+```{r chunk8}
 mysimilarity = c(
-  antsImageMutualInformation( r16, r64), 
-  antsImageMutualInformation( r16, treg$warpedmovout), 
+  antsImageMutualInformation( r16, r64),
+  antsImageMutualInformation( r16, treg$warpedmovout),
   antsImageMutualInformation( r16, sreg$warpedmovout),
   antsImageMutualInformation( r16, areg$warpedmovout) )
 ```
 
 *deformable* registration adds even more value
 
-```{r}
+```{r chunk9}
 dreg = antsRegistration( r16, r64, typeofTransform = 'SyN', verbose = F  )
 creg = antsRegistration( r16, r64, typeofTransform = 'SyNCC', verbose = F  )
 mysimilarity[ 5 ] = antsImageMutualInformation( r16, dreg$warpedmovout)
@@ -149,7 +149,7 @@ SyN / ITK produces differentiable maps with differentiable inverse.
 
 Results from the "SyN" algorithm which uses mutual information as a metric.
 
-```{r, out.width = '100%'}
+```{r chunk10, out.width = '100%'}
 gridf = createWarpedGrid( r16, fixedReferenceImage = r16, transform = dreg$fwdtransforms[1] )
 gridb = createWarpedGrid( r16, fixedReferenceImage = r16, transform = dreg$invtransforms[2] )
 plot( gridf )
@@ -158,17 +158,17 @@ plot( gridb )
 
 Results from the "SyNCC" algorithm which uses NCC as a metric.
 
-```{r,out.width = '100%'}
+```{r  chunk11,out.width = '100%'}
 cgridf = createWarpedGrid( r16, fixedReferenceImage = r16, transform = dreg$fwdtransforms[1] )
 cgridb = createWarpedGrid( r16, fixedReferenceImage = r16, transform = dreg$invtransforms[2] )
 plot( cgridf )
 plot( cgridb )
 ```
 
-What does "differentiable map with differentiable inverse" mean?  The diffeomorphism is like a 
+What does "differentiable map with differentiable inverse" mean?  The diffeomorphism is like a
 road between the two images - we can go back and forth along it.
 
-```{r }
+```{r  chunk12}
 plot( dreg$warpedfixout )
 plot( r64 )
 ```
@@ -178,10 +178,10 @@ It also means that if we compose the mapping from A to B with the mapping from B
 We can check this by looking at the result of the composition of SyN's forward and inverse maps.
 
 
-```{r}
+```{r  chunk13}
 emptygrid = createWarpedGrid( r16, fixedReferenceImage = r16 )
-invidmap = antsApplyTransforms( r16, emptygrid, 
-   c( dreg$invtransforms, dreg$fwdtransforms ), 
+invidmap = antsApplyTransforms( r16, emptygrid,
+   c( dreg$invtransforms, dreg$fwdtransforms ),
    whichtoinvert = c( T,F,F,F ))  # tricky stuff here
 plot( invidmap )
 ```
@@ -195,7 +195,7 @@ Non-diffeomorphic maps may *lose* information or may be completely uninterpretab
 
 One way to check this is to investigate the jacobian.  They should be positive which indicates that the topology of the image space is preserved ( no folding and no holes or tears are created ).
 
-```{r}
+```{r  chunk14}
 djac = createJacobianDeterminantImage( r16, dreg$fwdtransforms[1], geom = TRUE )
 print( range( djac ) )
 cjac = createJacobianDeterminantImage( r16, creg$fwdtransforms[1], geom = TRUE )
@@ -204,7 +204,7 @@ print( range( cjac ) )
 
 Is there a difference between the two jacobians?  Paired t-test.
 
-```{r}
+```{r  chunk15}
 mask = getMask( r16 ) %>% morphology("dilate",3)
 print( t.test( cjac[ mask == 1 ], djac[ mask == 1], paired=TRUE  ) )
 # cjac looks a little "larger" ... but is that the right way to ask this question?
@@ -215,10 +215,10 @@ print( t.test( cjac[ mask == 1 ], djac[ mask == 1], paired=TRUE  ) )
 
 Look at some histograms.
 
-```{r,fig.height=4,fig.width=8}
+```{r  chunk16,fig.height=4,fig.width=8}
 library( ggplot2 )
 n = sum( mask == 1)
-mydf = data.frame( 
+mydf = data.frame(
   registration = c( rep( "cc", n ) , rep("mi", n ) ),
   jacobian = c( cjac[ mask == 1 ], djac[ mask == 1] ) )
 ggplot( mydf, aes(jacobian, fill=registration )) + geom_density(alpha = 0.2)
@@ -227,7 +227,7 @@ ggplot( mydf, aes(jacobian, fill=registration )) + geom_density(alpha = 0.2)
 SyN is among the best performing registration methods so this additional information
 stored in the jacobian is likely to be valid, assuming that one knows what to do with it.
 
-```{r}
+```{r chunk17}
 plot( r16, list( cjac, cjac * (-1) ), doCropping = F, alpha = 0.85,
       color.overlay  = c( 'red', 'blue' ),
       window.overlay = c( 0.2, max( abs( cjac ) ) ) )
@@ -235,7 +235,7 @@ plot( r16, list( cjac, cjac * (-1) ), doCropping = F, alpha = 0.85,
 
 Look at the canny result using the diffeomorphism.
 
-```{r}
+```{r chunk18}
 mycan = iMath( creg$warpedmov, "Canny", 1, 5, 12 )
 plot( r16, mycan, color.overlay='jet', doCropping = T, alpha=0.8,
       window.overlay = c(0.5,5 ) )
@@ -287,14 +287,14 @@ r64lrmask = decropImage( r64lrmaskcrop, r64 ) * r64lrmask
 plot( r64symm, r64lrmask, alpha=0.5 )
 ```
 
-We symmetrized the images and labeled left and right. 
+We symmetrized the images and labeled left and right.
 
 In theory, we must transfer the labels back to original space.  But for this example, we can simply compare the overlap of the labels, post-registration.
 
 ```{r symmol}
 plot( r16symm, r64symm, alpha = 0.5 )
 quickreg = antsRegistration( r16symm, r64symm, typeofTransform = 'SyN' )
-lr64to16 = antsApplyTransforms( r16symm, r64lrmask, quickreg$fwdtransforms, 
+lr64to16 = antsApplyTransforms( r16symm, r64lrmask, quickreg$fwdtransforms,
                                 interpolator = 'genericLabel' )
 plot( r16symm, lr64to16, alpha=0.5 )
 pander( table( lr64to16[ r16lrmask == 1 ] == r16lrmask[ r16lrmask == 1 ] ) )
@@ -317,7 +317,7 @@ There are many parameter choices.  We've eliminated some of them via heurisitics
 Things one might want to toy with:
 
 * multiresolution strategy
-* smoothing strategy 
+* smoothing strategy
 * interaction of smoothing and multi-resolution
     * pyramid vs
     * scalespace
@@ -337,7 +337,7 @@ Things one might want to toy with:
 
 **Exercise** Take a look at:
 
-```{r}
+```{r areg}
 ?antsRegistration
 args( antsRegistration )
 ```
@@ -389,4 +389,3 @@ We recommend the command line version for "non-standard" use cases and/or multip
 * types of transformations that can be captured ( see the aperture problem )
 * sparsity versus density of the maps ( e.g. SIFT, HOGG vs  SyN, FFD, Demons/optical flow )
 * probably many more options ...
-
