@@ -34,6 +34,7 @@ c(
 "misc3d",
 "moments",
 "nabor",
+"pander",
 "pracma",
 "prettydoc",
 "psych",
