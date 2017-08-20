@@ -12,7 +12,7 @@ RUN apt-get update; \
 #     echo "${username} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 # USER $username
 # ENV HOME /home/$uid
-RUN apt-get -y install cmake
+RUN apt-get -y install cmake   libssl-dev
 RUN apt-get install -qqy x11-apps
 RUN apt-get install -y vim nano zsh curl git sudo
 RUN apt-get install -y x11vnc xvfb sudo
