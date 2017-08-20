@@ -1,4 +1,4 @@
-FROM rocker/tidyverse
+FROM rocker/rstudio
 COPY . /usr/local/src/scripts
 COPY ./scripts/* /usr/local/src/scripts
 WORKDIR /usr/local/src/scripts
