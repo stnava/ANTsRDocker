@@ -24,7 +24,6 @@ c(
 "glasso",
 "glmnet",
 "grid",
-"igraph",
 "irlba",
 "knitr",
 "lme4",
@@ -48,4 +47,5 @@ c(
 "visreg",
 "wmtsa")
 )
+devtools::install_github("igraph/rigraph")
 devtools::install_github( "stnava/ANTsR")
