@@ -9,7 +9,6 @@ c(
 "testthat",
 "viridis" )
 )
-# devtools::install_github( "stnava/ANTsR")
 install.packages(
 c(
 "abind",
@@ -49,3 +48,4 @@ c(
 "visreg",
 "wmtsa")
 )
+devtools::install_github( "stnava/ANTsR")
