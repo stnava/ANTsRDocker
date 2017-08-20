@@ -4,11 +4,13 @@ COPY ./scripts/* /usr/local/src/scripts
 WORKDIR /usr/local/src/scripts
 RUN apt-get update; \
     apt-get -y upgrade
-RUN export uid=$(id -u) group=$(id -g) username=$(id -un)
-RUN groupadd -r ${uid} -g ${group} && \
-    useradd -u ${uid} -g ${group} -G sudo -d /home/${uid} -s /bin/bash ${uid} && \
-    echo "${uid} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
-USER username
+RUN export uid=$(id -u)
+RUN export group=$(id -g)
+RUN export username=$(id -un)
+RUN groupadd -r ${user} -g ${gid} && \
+     useradd -u ${uid} -g ${gid} -G sudo -d /home/${user} -s /bin/bash ${user} && \
+     echo "${user} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
+USER $username
 ENV HOME /home/$uid
 RUN apt-get -y install cmake
 RUN apt-get install -qqy x11-apps
