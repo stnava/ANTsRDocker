@@ -9,7 +9,7 @@ RUN groupadd -r ${uid} -g ${group} && \
     useradd -u ${uid} -g ${group} -G sudo -d /home/${uid} -s /bin/bash ${uid} && \
     echo "${uid} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 USER username
-ENV HOME /home/username
+ENV HOME /home/$uid
 RUN apt-get -y install cmake
 RUN apt-get install -qqy x11-apps
 RUN apt-get install -y vim nano zsh curl git sudo
