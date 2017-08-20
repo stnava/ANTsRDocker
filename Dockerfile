@@ -7,9 +7,9 @@ RUN apt-get update; \
 RUN export uid=$(id -u)
 RUN export group=$(id -g)
 RUN export username=$(id -un)
-RUN groupadd -r ${user} -g ${gid} && \
-     useradd -u ${uid} -g ${gid} -G sudo -d /home/${user} -s /bin/bash ${user} && \
-     echo "${user} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
+RUN groupadd -r ${username} -g ${group} && \
+     useradd -u ${uid} -g ${group} -G sudo -d /home/${username} -s /bin/bash ${username} && \
+     echo "${username} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 USER $username
 ENV HOME /home/$uid
 RUN apt-get -y install cmake
