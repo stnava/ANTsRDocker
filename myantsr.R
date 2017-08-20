@@ -1,7 +1,7 @@
 print("Begin")
 install.packages(
 c(
-"Rcpp","magrittr","dplyr",
+"Rcpp","magrittr","dplyr","devtools",
 "pixmap",
 "png",
 "rmarkdown",
