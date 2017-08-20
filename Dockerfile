@@ -6,7 +6,7 @@ RUN apt-get update; \
     apt-get -y upgrade
 
 RUN apt-get -y install cmake
-RUN apt-get install -y x11vnc xvfb firefox
+RUN apt-get install -y x11vnc xvfb
 RUN mkdir ~/.vnc
 #
 RUN Rscript myantsr.R
