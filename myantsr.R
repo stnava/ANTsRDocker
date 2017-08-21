@@ -2,13 +2,14 @@ print("Begin")
 install.packages(
 c(
 "Rcpp", # "magrittr","dplyr","devtools",
+"RcppEigen",
+"magic",
 "misc3d",
 "pander",
 "pixmap",
 "png",
 "rmarkdown",
 "rsvd",
-"testthat",
 "viridis" )
 )
 library( devtools )
@@ -47,8 +48,9 @@ if ( FALSE )
   "robustbase",
   "signal",
   "sna",
+  "testthat",
   "visreg",
   "wmtsa")
   )
 # devtools::install_github("igraph/rigraph")
-# devtools::install_github( "stnava/ANTsR")
+devtools::install_github( "stnava/ANTsR")
