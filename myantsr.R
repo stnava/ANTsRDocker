@@ -2,6 +2,7 @@ print("Begin")
 install.packages(
 c(
 "Rcpp", # "magrittr","dplyr","devtools",
+"misc3d",
 "pander",
 "pixmap",
 "png",
@@ -33,7 +34,6 @@ if ( FALSE )
   "magic",
   "MASS",
   "mFilter",
-  "misc3d",
   "moments",
   "nabor",
   "pander",
