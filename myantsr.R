@@ -54,4 +54,4 @@ if ( FALSE )
     )
   devtools::install_github("igraph/rigraph")
   }
-devtools::install_github( "stnava/ANTsR")
+# devtools::install_github( "stnava/ANTsR")
