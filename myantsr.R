@@ -12,7 +12,7 @@ install.packages(
   "rsvd",
   "viridis" )
   )
-if ( FALSE )
+if ( TRUE )
   {
   install.packages(
     c(
