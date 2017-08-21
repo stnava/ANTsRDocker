@@ -1,7 +1,7 @@
 FROM rocker/rstudio
-# COPY . /usr/local/src/scripts
-# COPY ./scripts/* /usr/local/src/scripts
-# WORKDIR /usr/local/src/scripts
+COPY . /usr/local/src/scripts
+COPY ./scripts/* /usr/local/src/scripts
+WORKDIR /usr/local/src/scripts
 RUN apt-get update; \
     apt-get -y upgrade
 # RUN export uid=$(id -u)
