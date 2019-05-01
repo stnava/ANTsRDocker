@@ -10,6 +10,7 @@ install.packages(
   "png",
   "rmarkdown",
   "rsvd",
+  "colormap",
   "viridis" )
   )
 if ( TRUE )
@@ -21,6 +22,7 @@ if ( TRUE )
     "cluster",
     "d3Network",
     "DMwR",
+    "desc",
     "e1071",
     "extremevalues",
     "fastICA",
