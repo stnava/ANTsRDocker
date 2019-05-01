@@ -11,7 +11,8 @@ install.packages(
   "rmarkdown",
   "rsvd",
   "colormap",
-  "viridis" )
+  "viridis",
+  "V8" )
   )
 if ( TRUE )
   {
