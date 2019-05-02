@@ -1,4 +1,9 @@
 print("Begin")
+install.packages("tidyverse")
+install.packages("rmarkdown")
+install.packages("httr")
+install.packages("shinydashboard")
+install.packages('leaflet')
 install.packages(
   c(
   "Rcpp", # "magrittr","dplyr","devtools",
@@ -10,18 +15,18 @@ install.packages(
   "png",
   "rmarkdown",
   "rsvd",
+  "V8",
   "colormap",
-  "viridis",
-  "V8" )
+  "viridis" )
   )
-if ( TRUE )
+if ( FALSE )
   {
   install.packages(
     c(
     "abind",
-    "caret",
-    "cluster",
-    "d3Network",
+#    "caret",
+#    "cluster",
+#    "d3Network",
     "DMwR",
     "desc",
     "e1071",
@@ -31,30 +36,35 @@ if ( TRUE )
     "ggplot2",
     "glasso",
     "glmnet",
-    "grid",
+    "igraph",
     "irlba",
+    "keras",
     "knitr",
     "lme4",
     "magic",
     "MASS",
     "mFilter",
     "moments",
+    "mvtnorm",
     "nabor",
     "pander",
     "pracma",
     "prettydoc",
-    "psych",
+#    "psych",
     "randomForest",
-    "rflann",
+    "R6",
+#    "rflann",
     "rgl",
     "robust",
     "robustbase",
     "signal",
-    "sna",
+#    "sna",
+    "tensorflow",
     "testthat",
     "visreg",
-    "wmtsa")
+    "wmtsa",
+    "zeallot")
     )
-  devtools::install_github("igraph/rigraph")
+#  devtools::install_github("YeeJeremy/rflann")
   }
 # devtools::install_github( "stnava/ANTsR")
