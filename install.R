@@ -19,50 +19,27 @@ install.packages(
   "colormap",
   "viridis" )
   )
-if ( FALSE )
+if ( TRUE )
   {
   install.packages(
     c(
     "abind",
-#    "caret",
-#    "cluster",
-#    "d3Network",
-    "DMwR",
-    "desc",
-    "e1071",
-    "extremevalues",
     "fastICA",
     "fpc",
     "ggplot2",
-    "glasso",
-    "glmnet",
     "igraph",
-    "irlba",
     "keras",
     "knitr",
-    "lme4",
-    "magic",
-    "MASS",
-    "mFilter",
-    "moments",
     "mvtnorm",
-    "nabor",
     "pander",
     "pracma",
     "prettydoc",
-#    "psych",
-    "randomForest",
     "R6",
-#    "rflann",
-    "rgl",
-    "robust",
-    "robustbase",
-    "signal",
-#    "sna",
+    "reticulate",
     "tensorflow",
     "testthat",
+    "tfruns",
     "visreg",
-    "wmtsa",
     "zeallot")
     )
 #  devtools::install_github("YeeJeremy/rflann")
