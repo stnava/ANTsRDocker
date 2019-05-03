@@ -1,4 +1,4 @@
-FROM rocker/binder:3.5.0
+FROM jupyter/datascience-notebook
 
 USER root
 COPY . ${HOME}
@@ -13,24 +13,9 @@ RUN chmod a+rwx /usr/local/src/scripts
 RUN apt-get update; \
     apt-get -y upgrade
 RUN apt-get -y install cmake curl
-RUN CMAKE_INSTALLER=install-cmake.sh && \
-        curl -sSL https://cmake.org/files/v3.11/cmake-3.11.3-Linux-x86_64.sh -o ${CMAKE_INSTALLER} && \
-        chmod +x ${CMAKE_INSTALLER} && \
-         ./${CMAKE_INSTALLER} --prefix=/usr/local --skip-license
-RUN apt-get install -y python3 python3-pip python-pip
-RUN chown -R ${NB_USER} /home/rstudio/.cache/pip/http
-RUN chown -R ${NB_USER} /home/rstudio/.cache/pip
-# RUN sudo -H pip3 install --upgrade pip3
 RUN apt-get install -y libv8-dev
 RUN sudo -H pip3 install virtualenv wheel
-RUN sudo -H pip3 install scipy pandas numpy matplotlib sklearn statsmodels nibabel
-RUN sudo -H pip3 install coveralls plotly webcolors scikit-image
-RUN sudo -H pip3 install keras tensorflow
-# RUN git clone https://github.com/ANTsX/ANTsPy.git
-# RUN cd ANTsPy &&  sudo -H pip3 wheel .
-# RUN cd ANTsPy  && sudo -H  python3 setup.py  install
-# RUN sudo -H python3 setup.py bdist_wheel && cd ..
-
+RUN sudo -H pip3 install plotly webcolors scikit-image
 ## Run an install.R script, if it exists.
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
