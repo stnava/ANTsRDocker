@@ -14,8 +14,6 @@ RUN apt-get update; \
     apt-get -y upgrade
 RUN apt-get -y install cmake curl
 RUN apt-get install -y python3 python3-pip python-pip
-	RUN chown -R ${NB_USER} /home/rstudio/.cache/pip/http
-	RUN chown -R ${NB_USER} /home/rstudio/.cache/pip
 RUN apt-get install -y libv8-dev
 RUN sudo -H pip3 install virtualenv wheel
 RUN sudo -H pip3 install plotly webcolors scikit-image

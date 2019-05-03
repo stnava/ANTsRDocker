@@ -1,9 +1,4 @@
 print("Begin")
-install.packages("tidyverse")
-install.packages("rmarkdown")
-install.packages("httr")
-install.packages("shinydashboard")
-install.packages('leaflet')
 install.packages(
   c(
   "Rcpp", # "magrittr","dplyr","devtools",
@@ -13,16 +8,10 @@ install.packages(
   "pander",
   "pixmap",
   "png",
-  "rmarkdown",
   "rsvd",
   "V8",
   "colormap",
-  "viridis" )
-  )
-if ( TRUE )
-  {
-  install.packages(
-    c(
+  "viridis",
     "abind",
     "fastICA",
     "fpc",
@@ -40,7 +29,7 @@ if ( TRUE )
     "testthat",
     "tfruns",
     "visreg",
-    "zeallot")
+    "zeallot",repos = "http://cran.us.r-project.org")
     )
 #  devtools::install_github("YeeJeremy/rflann")
   }
