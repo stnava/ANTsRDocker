@@ -7,9 +7,9 @@ RUN chown -R ${NB_USER} ${HOME}
 
 
 COPY . /usr/local/src/scripts
-COPY ./scripts/* /usr/local/src/scripts
+COPY ./scripts/* /usr/local/src/scripts/
 WORKDIR /usr/local/src/scripts
-RUN chmod a+rwx /usr/local/src/scripts
+RUN chmod a+rwx /usr/local/src/scripts/*
 RUN apt-get update; \
     apt-get -y upgrade
 RUN apt-get -y install cmake curl
