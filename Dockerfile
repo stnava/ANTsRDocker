@@ -2,7 +2,7 @@ FROM jupyter/datascience-notebook
 
 USER root
 COPY . ${HOME}
-COPY --chown=rstudio:rstudio . ${HOME}
+# COPY --chown=rstudio:rstudio . ${HOME}
 RUN chown -R ${NB_USER} ${HOME}
 
 
