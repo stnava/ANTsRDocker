@@ -1,4 +1,3 @@
-print("Begin")
 install.packages(
   c(
   "Rcpp", # "magrittr","dplyr","devtools",
@@ -29,8 +28,6 @@ install.packages(
     "testthat",
     "tfruns",
     "visreg",
-    "zeallot",repos = "http://cran.us.r-project.org")
+    "zeallot"),
+    repos = "http://cran.us.r-project.org"
     )
-#  devtools::install_github("YeeJeremy/rflann")
-  }
-# devtools::install_github( "stnava/ANTsR")
