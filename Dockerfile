@@ -1,8 +1,8 @@
-FROM jupyter/datascience-notebook
+FROM rocker/binder:3.5.0
 
 USER root
 COPY . ${HOME}
-# COPY --chown=rstudio:rstudio . ${HOME}
+COPY --chown=rstudio:rstudio . ${HOME}
 RUN chown -R ${NB_USER} ${HOME}
 
 
