@@ -27,5 +27,6 @@ RUN wget https://github.com/ANTsX/ANTsR/releases/download/v0.4.9/ANTsR_0.4.9_R_x
 RUN R CMD INSTALL ANTsR_0.4.9_R_x86_64-pc-linux-gnu_R.tar.gz
 RUN git clone https://github.com/ANTsX/ANTsRNet.git && R CMD INSTALL ANTsRNet
 RUN chmod a+rwx *
+RUN chmod a+rwx .
 ## Become normal user again
 USER ${NB_USER}
