@@ -15,8 +15,7 @@ RUN apt-get update; \
 RUN apt-get -y install cmake curl
 RUN apt-get install -y python3 python3-pip python-pip
 RUN apt-get install -y libv8-dev
-RUN sudo -H pip3 install virtualenv wheel
-RUN sudo -H pip3 install plotly webcolors scikit-image
+RUN sudo -H pip3 install virtualenv keras tensorflow
 ## Run an install.R script, if it exists.
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
@@ -27,6 +26,6 @@ RUN R CMD INSTALL ANTsRCore_0.6.3.9_R_x86_64-pc-linux-gnu_R3.5.tar.gz
 RUN wget https://github.com/ANTsX/ANTsR/releases/download/v0.4.9/ANTsR_0.4.9_R_x86_64-pc-linux-gnu_R.tar.gz
 RUN R CMD INSTALL ANTsR_0.4.9_R_x86_64-pc-linux-gnu_R.tar.gz
 RUN git clone https://github.com/ANTsX/ANTsRNet.git && R CMD INSTALL ANTsRNet
-
+RUN chmod a+rwx *
 ## Become normal user again
 USER ${NB_USER}
