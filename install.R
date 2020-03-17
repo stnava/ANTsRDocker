@@ -7,6 +7,7 @@ install.packages(
   "pander",
   "pixmap",
   "png",
+  "qlcMatrix",
   "rsvd",
   "V8",
   "colormap",
