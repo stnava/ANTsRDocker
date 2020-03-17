@@ -21,3 +21,9 @@ docker run -p 8888:8888 antsr:latest
 ```
 
 and then open the listed weblink.
+
+or just run into bash directly
+
+```
+docker run -it --rm antsr:latest /bin/bash
+```
