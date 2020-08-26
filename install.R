@@ -10,3 +10,5 @@ install.packages(
     "zeallot"),
     repos = "http://cran.us.r-project.org"
     )
+reticulate::py_install("h5py")
+tensorflow::install_tensorflow()
