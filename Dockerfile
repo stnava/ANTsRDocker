@@ -10,12 +10,14 @@ COPY . /usr/local/src/scripts
 COPY ./scripts/* /usr/local/src/scripts/
 WORKDIR /usr/local/src/scripts
 RUN chmod a+rwx /usr/local/src/scripts/*
+RUN export PATH=/root/.local/bin:${PATH}
 RUN apt-get update; \
     apt-get -y upgrade
 RUN apt-get -y install cmake curl
-RUN apt-get install -y python3 python3-pip python-pip
+RUN apt-get install -y python3 python3-pip
 RUN apt-get install -y libv8-dev
-RUN sudo -H pip3 install virtualenv keras tensorflow antspyx antspyt1w antspynet
+RUN python3 -m pip install --user virtualenv
+RUN python3 -m pip install --user keras tensorflow antspyx antspyt1w antspynet
 ## Run an install.R script, if it exists.
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
