@@ -10,14 +10,17 @@ COPY . /usr/local/src/scripts
 COPY ./scripts/* /usr/local/src/scripts/
 WORKDIR /usr/local/src/scripts
 RUN chmod a+rwx /usr/local/src/scripts/*
-RUN export PATH=/root/.local/bin:${PATH}
+RUN export PATH="${PATH}:/root/.local/bin"
 RUN apt-get update; \
     apt-get -y upgrade
 RUN apt-get -y install cmake curl
 RUN apt-get install -y python3 python3-pip
 RUN apt-get install -y libv8-dev
+RUN mkdir -p /root/.cache/pip
+RUN chown -R ${NB_USER} /root/.cache/pip
 RUN python3 -m pip install --user virtualenv
 RUN python3 -m pip install --user keras tensorflow antspyx antspyt1w antspynet
+RUN python3 -m pip install virtualenv keras tensorflow antspyx antspyt1w antspynet
 ## Run an install.R script, if it exists.
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
@@ -73,6 +76,7 @@ RUN Rscript -e 'remotes::install_version("BGLR")' \
 
 RUN Rscript -e 'remotes::install_bioc("mixOmics")'
 RUN Rscript -e 'remotes::install_bioc("survcomp")'
+RUN Rscript -e 'reticulate::install_miniconda();tensorflow::install_tensorflow()'
 
 RUN Rscript -e 'remotes::install_github( \
         "cran/SpatioTemporal", \
