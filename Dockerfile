@@ -18,9 +18,6 @@ RUN apt-get install -y python3 python3-pip
 RUN apt-get install -y libv8-dev
 RUN mkdir -p /root/.cache/pip
 RUN chown -R ${NB_USER} /root/.cache/pip
-RUN python3 -m pip install --user virtualenv
-RUN python3 -m pip install --user keras tensorflow antspyx antspyt1w antspynet
-RUN python3 -m pip install virtualenv keras tensorflow antspyx antspyt1w antspynet
 ## Run an install.R script, if it exists.
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
@@ -76,7 +73,7 @@ RUN Rscript -e 'remotes::install_version("BGLR")' \
 
 RUN Rscript -e 'remotes::install_bioc("mixOmics")'
 RUN Rscript -e 'remotes::install_bioc("survcomp")'
-RUN Rscript -e 'reticulate::install_miniconda();tensorflow::install_tensorflow()'
+RUN Rscript -e 'tensorflow::install_tensorflow()'
 
 RUN Rscript -e 'remotes::install_github( \
         "cran/SpatioTemporal", \
@@ -103,5 +100,9 @@ RUN git clone https://github.com/stnava/patchMatchR.git && R CMD INSTALL patchMa
 RUN git clone https://stnava@bitbucket.org/stnava/superblendr.git  && R CMD INSTALL superblendr
 RUN chmod a+rwx *
 RUN chmod a+rwx .
+
+RUN python3 -m pip install --user virtualenv
+RUN python3 -m pip install --user antspyx antspyt1w antspynet antspymm
+
 ## Become normal user again
 USER ${NB_USER}
