@@ -106,3 +106,6 @@ RUN python3 -m pip install --user antspyx antspyt1w antspynet antspymm
 
 ## Become normal user again
 USER ${NB_USER}
+RUN python3 -m pip install --user virtualenv
+RUN python3 -m pip install --user antspyx antspyt1w antspynet antspymm
+
