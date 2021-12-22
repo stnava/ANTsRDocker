@@ -108,4 +108,7 @@ RUN python3 -m pip install --user antspyx antspyt1w antspynet antspymm
 USER ${NB_USER}
 RUN python3 -m pip install --user virtualenv
 RUN python3 -m pip install --user antspyx antspyt1w antspynet antspymm
+RUN python3 -c 'import ants; import antspyt1w; antspyt1w.get_data(  force_download=True, version=31 )'
+RUN python3 -c 'import ants; import antspymm; antspymm.get_data(  force_download=True )'
+RUN python3 -c 'import ants; import antspyt1w; img=ants.image_read("~/.antspyt1w/28364-00000000-T1w-00.nii.gz"); antspyt1w.hierarchical( img, "/tmp/XXX", labels_to_register=None, is_test=True)'
 
